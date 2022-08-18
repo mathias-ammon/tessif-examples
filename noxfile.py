@@ -113,7 +113,7 @@ def xdoctest(session):
     args = session.posargs or ["all"]
     session.run("poetry", "install", "--no-dev", external=True)
     install_with_constraints(session, "xdoctest", "pygments")
-    session.run("python", "-m", "xdoctest", "hpmpy_project", *args)
+    session.run("python", "-m", "xdoctest", "tessif_examples", *args)
 
 
 @nox.session(python="3.10")

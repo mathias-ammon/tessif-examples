@@ -33,7 +33,7 @@ print(sys.path)
 
 # -- Project information -----------------------------------------------------
 
-project = "hpmpy_project - Hypermodern Python Project Template"
+project = "tessif_examples - Hypermodern Python Project Template"
 author = "Mathias Ammon"
 copyright = f"2022, {author}"  # pylint: disable=redefined-builtin
 
@@ -52,7 +52,7 @@ extensions = [
 
 html_theme = "sphinx_rtd_theme"
 html_theme_options = {
-    "canonical_url": "https://github.com/tZ3ma/hpmpy_project/",
+    "canonical_url": "https://github.com/tZ3ma/tessif_examples/",
     "display_version": True,
     "sticky_navigation": True,
     # 'style_nav_header_background': '#009682',

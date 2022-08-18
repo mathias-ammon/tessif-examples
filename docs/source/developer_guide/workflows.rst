@@ -247,9 +247,9 @@ commands:
 
    poetry add package^1.0
    poetry add "package>=1.0"
-   poetry add hpmpy_project@latest
-   poetry add git+https://github.com/tZ3ma/hpmpy_project.git
-   poetry add git+https://github.com/tZ3ma/hpmpy_project.git#develop
+   poetry add tessif_examples@latest
+   poetry add git+https://github.com/tZ3ma/tessif_examples.git
+   poetry add git+https://github.com/tZ3ma/tessif_examples.git#develop
    poetry add ./my-package/
 
 Adding local dependencies in editable mode

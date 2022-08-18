@@ -3,7 +3,7 @@
 API
 ===
 
-.. automodule:: hpmpy_project
+.. automodule:: tessif_examples
    :members:
    :show-inheritance:
 

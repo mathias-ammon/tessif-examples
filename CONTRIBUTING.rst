@@ -18,9 +18,9 @@ List of important resources for contributors
 - `Code of Conduct`_
 
 .. _MIT license: https://opensource.org/licenses/MIT
-.. _Source Code: https://github.com/tZ3ma/hpmpy_project
-.. _Documentation: https://hpmpy_project.readthedocs.io/
-.. _Issue Tracker: https://github.com/tZ3ma/hpmpy_project/issues
+.. _Source Code: https://github.com/tZ3ma/tessif_examples
+.. _Documentation: https://tessif_examples.readthedocs.io/
+.. _Issue Tracker: https://github.com/tZ3ma/tessif_examples/issues
 
 How to report a bug
 -------------------
@@ -65,7 +65,7 @@ or the command-line interface:
 .. code:: console
 
    $ poetry run python
-   $ poetry run hpmpy_project
+   $ poetry run tessif_examples
 
 .. _Poetry: https://python-poetry.org/
 .. _Nox: https://nox.thea.codes/
@@ -121,6 +121,6 @@ To run linting and code formatting checks before committing your change, you can
 It is recommended to open an issue before starting work on anything.
 This will allow a chance to talk it over with the owners and validate your approach.
 
-.. _pull request: https://github.com/tZ3ma/hpmpy_project/pulls
+.. _pull request: https://github.com/tZ3ma/tessif_examples/pulls
 .. github-only
 .. _Code of Conduct: CODE_OF_CONDUCT.rst

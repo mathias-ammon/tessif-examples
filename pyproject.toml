@@ -1,12 +1,12 @@
 [tool.poetry]
-name = "hpmpy-project"
-version = "0.0.8"
+name = "tessif-examples"
+version = "0.1.0"
 description = "Tweaked Hypermodern Python Project Template w/o Typing"
 authors = ["Mathias Ammon <mathias.ammon@tuhh.de>"]
 license = "MIT"
 readme = "README.rst"
-repository = "https://github.com/tZ3ma/hpmpy_project"
-homepage = "https://github.com/tZ3ma/hpmpy_project"
+repository = "https://github.com/tZ3ma/tessif_examples"
+homepage = "https://github.com/tZ3ma/tessif_examples"
 keywords = ["hypermodern", "template"]
 
 [tool.poetry.dependencies]
@@ -38,7 +38,7 @@ source = ["src", "*/site-packages"]
 
 [tool.coverage.run]
 branch = true
-source = ["hpmpy_project"]
+source = ["tessif_examples"]
 
 [tool.coverage.report]
 show_missing = true
