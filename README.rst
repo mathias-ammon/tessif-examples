@@ -1,5 +1,5 @@
 tessif-examples
-====================================================================================================
+===============
 
 |PyPI| |Python Version| |License| |Status|
 
@@ -92,8 +92,7 @@ tessif-examples
    :alt: Package uses flake8
 
 
-Newb tweaked non-typing version of the excellent Hypermodern-Python_ project
-foundation proposed by `Claudio Jolowicz <cj>`_
+Tessif_ example library
 
 Installation
 ------------
@@ -132,6 +131,8 @@ Credits
 
 This project was created using the `Mathias Ammon <tZ3ma>`_ tweaked version of the
 Hypermodern-Python_ project foundation proposed by `Claudio Jolowicz <cj>`_.
+
+.. _Tessif: https://github.com/tZ3ma/tessif
 
 .. _Hypermodern-Python: https://cjolowicz.github.io/posts/hypermodern-python-01-setup/
 .. _Hypermodern Python Cookiecutter: https://github.com/cjolowicz/cookiecutter-hypermodern-python

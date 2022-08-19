@@ -1,10 +1,7 @@
 tessif-examples
-=================================================================================================
+===============
 
-tessif-examples has been developed for making new hypermodern python projects a blast!
-
-It uses the excellent Hypermodern-Python_ project foundation proposed by
-`Claudio Jolowicz <cj>`_.
+tessif-examples has been developed for making it easy to get started with tessif, to provide powerfull test data as well as to demonstrate use cases. But most of all it aims to reducing unneccesary redundancy.
 
 .. toctree::
    :maxdepth: 1
@@ -12,7 +9,13 @@ It uses the excellent Hypermodern-Python_ project foundation proposed by
 
    source/getting_started/installation
    source/getting_started/quick_start
-   source/getting_started/examples
+
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Examples
+
+   source/examples
 
 .. toctree::
    :maxdepth: 1
@@ -33,9 +36,7 @@ It uses the excellent Hypermodern-Python_ project foundation proposed by
    :maxdepth: 1
    :caption: Reference
 
-   source/api
    source/unittests
-   source/changelog
 
 
 Indices and tables
@@ -45,7 +46,3 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 * :ref:`glossary`
-
-
-.. _Hypermodern-Python: https://cjolowicz.github.io/posts/hypermodern-python-01-setup/
-.. _cj: https://github.com/cjolowicz

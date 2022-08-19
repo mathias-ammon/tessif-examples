@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "tessif-examples"
-version = "0.1.0"
-description = "Tweaked Hypermodern Python Project Template w/o Typing"
+version = "0.1.1"
+description = "Tessif Examples Library"
 authors = ["Mathias Ammon <mathias.ammon@tuhh.de>"]
 license = "MIT"
 readme = "README.rst"
@@ -12,6 +12,8 @@ keywords = ["hypermodern", "template"]
 [tool.poetry.dependencies]
 python = "^3.8"
 requests = "^2.27.1"
+pandas = "^1.4.3"
+tessif = "^0.0.15"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.1.2"
