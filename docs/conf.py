@@ -28,8 +28,6 @@ unittest_path = pathlib.Path(__file__).resolve() / ".." / ".."
 sys.path.insert(0, os.path.abspath(unittest_path))
 sys.path.insert(0, os.path.abspath(src_path))
 
-print(unittest_path)
-print(sys.path)
 
 # -- Project information -----------------------------------------------------
 
@@ -58,14 +56,15 @@ html_theme_options = {
     # 'style_nav_header_background': '#009682',
 }
 
+# Add any paths that contain custom static files (such as style sheets) here,
+# relative to this directory. They are copied after the builtin static files,
+# so a file named "default.css" will overwrite the builtin "default.css".
+html_static_path = ["source/_static"]
+
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3/", None),
-    "networkx": ("https://networkx.org/documentation/stable/", None),
     "pandas": ("https://pandas.pydata.org/pandas-docs/stable/", None),
-    "numpy": ("https://numpy.org/doc/stable/", None),
-    "scipy": ("https://docs.scipy.org/doc/scipy/reference", None),
-    "matplotlib": ("https://matplotlib.org", None),
 }
 
 # Sort the documentation
