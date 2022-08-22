@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tessif-examples"
-version = "0.1.1"
+version = "0.1.2"
 description = "Tessif Examples Library"
 authors = ["Mathias Ammon <mathias.ammon@tuhh.de>"]
 license = "MIT"
