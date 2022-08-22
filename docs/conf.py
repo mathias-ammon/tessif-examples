@@ -31,7 +31,7 @@ sys.path.insert(0, os.path.abspath(src_path))
 
 # -- Project information -----------------------------------------------------
 
-project = "tessif_examples - Hypermodern Python Project Template"
+project = "tessif_examples - Tessif Examples Library"
 author = "Mathias Ammon"
 copyright = f"2022, {author}"  # pylint: disable=redefined-builtin
 

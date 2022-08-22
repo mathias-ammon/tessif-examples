@@ -27,6 +27,7 @@ tessif-examples has been developed for making it easy to get started with tessif
    :maxdepth: 1
    :caption: Developer Guide
 
+   source/developer_guide/port
    source/developer_guide/workflows
    source/developer_guide/contributing
    source/developer_guide/code_of_conduct

@@ -8,10 +8,6 @@ from tessif.model import components, energy_system
 def create_mwe():
     """Create minimally parameterized working example.
 
-    Creates a simple energy system simulation to potentially
-    store it on disc inside :paramref:`~create_mwe.directory` as
-    :paramref:`~create_mwe.filename`.
-
     Returns
     -------
     :class:`tessif.model.energy_system.AbstractEnergySystem`
