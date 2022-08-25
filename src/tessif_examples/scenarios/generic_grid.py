@@ -69,7 +69,7 @@ def create_generic_grid():
 
     Visualize the energy system for better understanding what the output means::
 
-        from tessif-visualize import dcgraph as dcv
+        from tessif_visualize import dcgrph as dcv
 
         app = dcv.draw_generic_graph(
             energy_system=create_generic_grid(),
