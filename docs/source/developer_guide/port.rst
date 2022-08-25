@@ -84,6 +84,7 @@ Copy
    - create_storage_example
    - create_expansion_plan_example
    - create_simple_transformer_grid_es
+   - create_time_varying_efficiency_transformer
 
 3. ``scenarios`` examples are:
 
