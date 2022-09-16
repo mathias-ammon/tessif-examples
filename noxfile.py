@@ -8,6 +8,7 @@ from pathlib import Path
 
 # third pary packages
 import nox
+import nox_poetry
 
 # local packages
 
@@ -23,22 +24,22 @@ nox.options.sessions = (
 )
 
 
-def install_with_constraints(session, *args, **kwargs):
-    """Install packages constrained by Poetry's lock file."""
-    with tempfile.NamedTemporaryFile() as requirements:
-        session.run(
-            "poetry",
-            "export",
-            "--dev",
-            "--format=requirements.txt",
-            "--without-hashes",  # requ for working with pip resolver
-            f"--output={requirements.name}",
-            external=True,
-        )
-        session.install(f"--constraint={requirements.name}", *args, **kwargs)
+# def install_with_constraints(session, *args, **kwargs):
+#     """Install packages constrained by Poetry's lock file."""
+#     with tempfile.NamedTemporaryFile() as requirements:
+#         session.run(
+#             "poetry",
+#             "export",
+#             "--dev",
+#             "--format=requirements.txt",
+#             "--without-hashes",  # requ for working with pip resolver
+#             f"--output={requirements.name}",
+#             external=True,
+#         )
+#         session.install(f"--constraint={requirements.name}", *args, **kwargs)
 
 
-@nox.session(python="3.10")
+@nox_poetry.session(python="3.10")
 def tests(session):
     """Run test suite."""
     args = session.posargs or [
@@ -48,8 +49,7 @@ def tests(session):
         # append exlcuded markers as "and not ..."
     ]
     session.run("poetry", "install", "--no-dev", external=True)
-    install_with_constraints(
-        session,
+    session.install(
         "coverage[toml]",
         "pytest",
         "pytest-cov",
@@ -62,12 +62,11 @@ def tests(session):
 locations = "src", "tests", "noxfile.py", "docs/conf.py"
 
 
-@nox.session(python="3.10")
+@nox_poetry.session(python="3.10")
 def lint(session):
     """Lint using flake8."""
     args = session.posargs or locations
-    install_with_constraints(
-        session,
+    session.install(
         "darglint",
         "flake8",
         "flake8-bandit",
@@ -84,44 +83,43 @@ def lint(session):
     session.run("flake8", *args)
 
 
-@nox.session(python="3.10")
+@nox_poetry.session(python="3.10")
 def pylint(session):
     """Lint using pylint."""
     args = session.posargs or locations
     session.run("poetry", "install", "--no-dev", external=True)
-    install_with_constraints(
-        session,
+    session.install(
         "pytest",
         "requests",
         "nox",
+        "nox-poetry",
         "pylint",
     )
     session.run("pylint", "--output-format=colorized", "--recursive=y", *args)
 
 
-@nox.session(python="3.10")
+@nox_poetry.session(python="3.10")
 def black(session):
     """Reformat code using black."""
     args = session.posargs or locations
-    install_with_constraints(session, "black")
+    session.install("black")
     session.run("black", *args)
 
 
-@nox.session(python="3.10")
+@nox_poetry.session(python="3.10")
 def xdoctest(session):
     """Run examples with xdoctest."""
     args = session.posargs or ["all"]
     session.run("poetry", "install", "--no-dev", external=True)
-    install_with_constraints(session, "xdoctest", "pygments")
+    session.install("xdoctest", "pygments")
     session.run("python", "-m", "xdoctest", "tessif_examples", *args)
 
 
-@nox.session(python="3.10")
+@nox_poetry.session(python="3.10")
 def docs(session):
     """Build the documentation."""
     session.run("poetry", "install", "--no-dev", external=True)
-    install_with_constraints(
-        session,
+    session.install(
         "sphinx",
         "sphinx-click",
         "furo",
@@ -132,13 +130,12 @@ def docs(session):
     session.run("sphinx-build", "docs", "docs/_build")
 
 
-@nox.session(python="3.10")
+@nox_poetry.session(python="3.10")
 def docs_live(session):
     """Build and serve the documentation with live reloading on changes."""
     args = session.posargs or ["--open-browser", "docs", "docs/_build"]
     session.run("poetry", "install", "--no-dev", external=True)
-    install_with_constraints(
-        session,
+    session.install(
         "sphinx",
         "sphinx-autobuild",
         "sphinx-click",
@@ -155,12 +152,11 @@ def docs_live(session):
     session.run("sphinx-autobuild", *args)
 
 
-@nox.session(python="3.10")
+@nox_poetry.session(python="3.10")
 def docs_rebuild(session):
     """Rebuild the entire sphinx documentation."""
     session.run("poetry", "install", "--no-dev", external=True)
-    install_with_constraints(
-        session,
+    session.install(
         "sphinx",
         "sphinx-click",
         "furo",
@@ -175,28 +171,27 @@ def docs_rebuild(session):
     session.run("sphinx-build", "docs", "docs/_build")
 
 
-@nox.session(python="3.10")
+@nox_poetry.session(python="3.10")
 def coverage(session):
     """Produce coverage report."""
-    install_with_constraints(session, "coverage[toml]", "codecov")
+    session.install("coverage[toml]", "codecov")
     session.run("coverage", "xml", "--fail-under=0")
 
 
-@nox.session(python="3.10")
+@nox_poetry.session(python="3.10")
 def codecov(session):
     """Produce coverage report and try uploading to codecov."""
-    install_with_constraints(session, "coverage[toml]", "codecov")
+    session.install("coverage[toml]", "codecov")
     session.run("coverage", "xml", "--fail-under=0")
     session.run("codecov", *session.posargs)
 
 
-@nox.session(name="pre-commit", python="3.10")
+@nox_poetry.session(name="pre-commit", python="3.10")
 def precommit(session):
     """Lint using pre-commit."""
     args = session.posargs or ["run", "--all-files", "--show-diff-on-failure"]
     session.run("poetry", "install", "--no-dev", external=True)
-    install_with_constraints(
-        session,
+    session.install(
         "darglint",
         "black",
         "flake8",
@@ -213,12 +208,13 @@ def precommit(session):
         "pytest",
         "requests",
         "nox",
+        "nox-poetry",
         "pylint",
     )
     session.run("pre-commit", *args)
 
 
-@nox.session(python="3.10")
+@nox_poetry.session(python="3.10")
 def safety(session):
     """Scan dependencies for insecure packages using safety."""
     with tempfile.NamedTemporaryFile() as requirements:
