@@ -1,7 +1,7 @@
 # src/tessif_examples/expansion_plan_example.py
 """Tessif minimum working example energy system model."""
-import tessif.namedtuples as nts
 import numpy as np
+import tessif.namedtuples as nts
 from pandas import date_range
 from tessif.model import components, energy_system
 
@@ -73,33 +73,32 @@ def create_expansion_plan_example(directory=None, filename=None):
 
     # 2. Create a simulation time frame of 2 one hour time steps as a
     # :class:`pandas.DatetimeIndex`:
-    timeframe = np.date_range('7/13/1990', periods=4, freq='H')
+    timeframe = date_range("7/13/1990", periods=4, freq="H")
 
     # 3. Creating the individual energy system components:
 
     # emitting source having no costs and no flow constraints but emissions
     emitting_source = components.Source(
-        name='Emitting Source',
-        outputs=('electricity',),
+        name="Emitting Source",
+        outputs=("electricity",),
         # Minimum number of arguments required
-        flow_emissions={
-            'electricity': 1
-        },
-
+        flow_emissions={"electricity": 1},
     )
 
     # capped source having no costs, no emission, no flow constraints
     # but existing and max installed capacity (for expansion) as well
     # as expansion costs
     capped_renewable = components.Source(
-        name='Capped Renewable',
-        outputs=('electricity',),
+        name="Capped Renewable",
+        outputs=("electricity",),
         # Minimum number of arguments required
-        flow_rates={'electricity': nts.MinMax(min=1, max=2)},
-        flow_costs={'electricity': 2, },
-        expandable={'electricity': True},
-        expansion_costs={'electricity': 1},
-        expansion_limits={'electricity': nts.MinMax(min=1, max=4)},
+        flow_rates={"electricity": nts.MinMax(min=1, max=2)},
+        flow_costs={
+            "electricity": 2,
+        },
+        expandable={"electricity": True},
+        expansion_costs={"electricity": 1},
+        expansion_limits={"electricity": nts.MinMax(min=1, max=4)},
     )
 
     # uncapped source having no costs and no emissions
@@ -107,49 +106,47 @@ def create_expansion_plan_example(directory=None, filename=None):
     uncapped_min, uncapped_max = [1, 2, 3, 1], [1, 2, 3, 1]
 
     uncapped_renewable = components.Source(
-        name='Uncapped Renewable',
-        outputs=('electricity',),
+        name="Uncapped Renewable",
+        outputs=("electricity",),
         # Minimum number of arguments required
         # flow_rates={'electricity': nts.MinMax(min=0, max=1)},
-        flow_costs={'electricity': 2, },
-        expandable={'electricity': True},
-        expansion_costs={'electricity': 2},
-        timeseries={
-            'electricity': nts.MinMax(
-                min=uncapped_min,
-                max=uncapped_max
-            )
+        flow_costs={
+            "electricity": 2,
         },
+        expandable={"electricity": True},
+        expansion_costs={"electricity": 2},
+        timeseries={"electricity": nts.MinMax(min=uncapped_min, max=uncapped_max)},
         expansion_limits={
-            'electricity': nts.MinMax(
+            "electricity": nts.MinMax(
                 min=max(uncapped_max),
-                max=float('+inf'),
+                max=float("+inf"),
             )
         },
     )
 
     electricity_line = components.Bus(
-        name='Powerline',
+        name="Powerline",
         inputs=(
-            'Emitting Source.electricity',
-            'Capped Renewable.electricity',
-            'Uncapped Renewable.electricity'),
-        outputs=('Demand.electricity',),
+            "Emitting Source.electricity",
+            "Capped Renewable.electricity",
+            "Uncapped Renewable.electricity",
+        ),
+        outputs=("Demand.electricity",),
         # Minimum number of arguments required
     )
 
     demand = components.Sink(
-        name='Demand',
-        inputs=('electricity',),
+        name="Demand",
+        inputs=("electricity",),
         # Minimum number of arguments required
-        flow_rates={'electricity': nts.MinMax(min=10, max=10)},
+        flow_rates={"electricity": nts.MinMax(min=10, max=10)},
     )
 
-    global_constraints = {'emissions': 20}
+    global_constraints = {"emissions": 20}
 
     # 4. Creating the actual energy system:
     explicit_es = energy_system.AbstractEnergySystem(
-        uid='Expansion Plan Example',
+        uid="Expansion Plan Example",
         busses=(electricity_line,),
         sinks=(demand,),
         sources=(
@@ -161,6 +158,4 @@ def create_expansion_plan_example(directory=None, filename=None):
         global_constraints=global_constraints,
     )
 
-
     return explicit_es
-
