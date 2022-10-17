@@ -4,38 +4,54 @@ from tessif_examples import scenarios
 
 
 def test_generic_grid():
-    """Test mwe creation."""
+    """Test generic_grid creation."""
     esys = scenarios.create_generic_grid()
     assert esys.uid == "Generic_Grid"
+
+
 def test_hhes():
-    """Test mwe creation."""
+    """Test hhes creation."""
     esys = scenarios.create_hhes()
-    assert esys.uid == "Generic_Grid"
+    assert esys.uid == "Energy System Hamburg"
+
+
 def test_grid_es():
-    """Test mwe creation."""
+    """Test grid_es creation."""
     esys = scenarios.create_grid_es()
-    assert esys.uid == "Generic_Grid"
+    assert esys.uid == "my_energy_system"
+
+
 def test_component_es():
-    """Test mwe creation."""
+    """Test component_es creation."""
     esys = scenarios.create_component_es()
-    assert esys.uid == "Generic_Grid"
+    assert esys.uid == "Component_es"
+
+
 def test_grid_kp_es():
-    """Test mwe creation."""
+    """Test grid_kp_es creation."""
     esys = scenarios.create_grid_kp_es()
-    assert esys.uid == "Generic_Grid"
+    assert esys.uid == 'Energy System Grid "Kupferplatte"'
+
+
 def test_grid_cs_es():
-    """Test mwe creation."""
+    """Test grid_cs_es creation."""
     esys = scenarios.create_grid_cs_es()
-    assert esys.uid == "Generic_Grid"
+    assert esys.uid == "Energy System Grid Connectors and Storage"
+
+
 def test_grid_cp_es():
-    """Test mwe creation."""
+    """Test grid_cp_es creation."""
     esys = scenarios.create_grid_cp_es()
-    assert esys.uid == "Generic_Grid"
+    assert esys.uid == "Energy System Grid Connectors and Powersource/-sink"
+
+
 def test_grid_ts_es():
-    """Test mwe creation."""
+    """Test grid_ts_es creation."""
     esys = scenarios.create_grid_ts_es()
-    assert esys.uid == "Generic_Grid"
+    assert esys.uid == "Energy System Grid Transformers and Storages"
+
+
 def test_grid_tp_es():
-    """Test mwe creation."""
+    """Test grid_tp_es creation."""
     esys = scenarios.create_grid_tp_es()
-    assert esys.uid == "Generic_Grid"
+    assert esys.uid == "Energy System Grid Transformers and Powersources/-sinks"

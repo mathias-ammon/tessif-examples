@@ -1,7 +1,7 @@
 # src/tessif_examples/conected_es.py
 """Tessif minimum working example energy system model."""
-import tessif.namedtuples as nts
 import numpy as np
+import tessif.namedtuples as nts
 from pandas import date_range
 from tessif.model import components, energy_system
 
@@ -58,63 +58,74 @@ def create_connected_es(directory=None, filename=None):
         :alt: Image showing the connected_es energy system graph
     """
 
-    timeframe = np.date_range('7/13/1990', periods=3, freq='H')
+    timeframe = date_range("7/13/1990", periods=3, freq="H")
 
     s1 = components.Sink(
-        name='sink-01',
-        inputs=('electricity',),
-        flow_rates={'electricity': nts.MinMax(min=0, max=15)},
-        timeseries={'electricity': nts.MinMax(
-            min=np.array([0, 15, 10]), max=np.array([0, 15, 10]))})
+        name="sink-01",
+        inputs=("electricity",),
+        flow_rates={"electricity": nts.MinMax(min=0, max=15)},
+        timeseries={
+            "electricity": nts.MinMax(
+                min=np.array([0, 15, 10]), max=np.array([0, 15, 10])
+            )
+        },
+    )
 
     so1 = components.Source(
-        name='source-01',
-        outputs=('electricity',),
-        flow_rates={'electricity': nts.MinMax(min=0, max=10)},
-        flow_costs={'electricity': 1},
-        flow_emissions={'electricity': 0.8})
+        name="source-01",
+        outputs=("electricity",),
+        flow_rates={"electricity": nts.MinMax(min=0, max=10)},
+        flow_costs={"electricity": 1},
+        flow_emissions={"electricity": 0.8},
+    )
 
     mb1 = components.Bus(
-        name='bus-01',
-        inputs=('source-01.electricity',),
-        outputs=('sink-01.electricity',),
+        name="bus-01",
+        inputs=("source-01.electricity",),
+        outputs=("sink-01.electricity",),
     )
 
     s2 = components.Sink(
-        name='sink-02',
-        inputs=('electricity',),
-        flow_rates={'electricity': nts.MinMax(min=0, max=15)},
-        timeseries={'electricity': nts.MinMax(
-            min=np.array([15, 0, 10]), max=np.array([15, 0, 10]))})
+        name="sink-02",
+        inputs=("electricity",),
+        flow_rates={"electricity": nts.MinMax(min=0, max=15)},
+        timeseries={
+            "electricity": nts.MinMax(
+                min=np.array([15, 0, 10]), max=np.array([15, 0, 10])
+            )
+        },
+    )
 
     so2 = components.Source(
-        name='source-02',
-        outputs=('electricity',),
-        flow_rates={'electricity': nts.MinMax(min=0, max=10)},
-        flow_costs={'electricity': 1},
-        flow_emissions={'electricity': 1.2})
+        name="source-02",
+        outputs=("electricity",),
+        flow_rates={"electricity": nts.MinMax(min=0, max=10)},
+        flow_costs={"electricity": 1},
+        flow_emissions={"electricity": 1.2},
+    )
 
     mb2 = components.Bus(
-        name='bus-02',
-        inputs=('source-02.electricity',),
-        outputs=('sink-02.electricity',),
+        name="bus-02",
+        inputs=("source-02.electricity",),
+        outputs=("sink-02.electricity",),
     )
 
     c = components.Connector(
-        name='connector',
-        interfaces=('bus-01', 'bus-02'),
-        conversions={('bus-01', 'bus-02'): 0.9,
-                     ('bus-02', 'bus-01'): 0.8})
-
-    connected_es = energy_system.AbstractEnergySystem(
-        uid='Connected-Energy-Systems-Example',
-        busses=(mb1, mb2),
-        sinks=(s1, s2,),
-        sources=(so1, so2),
-        connectors=(c,),
-        timeframe=timeframe
+        name="connector",
+        interfaces=("bus-01", "bus-02"),
+        conversions={("bus-01", "bus-02"): 0.9, ("bus-02", "bus-01"): 0.8},
     )
 
-    
-    return connected_es
+    connected_es = energy_system.AbstractEnergySystem(
+        uid="Connected-Energy-Systems-Example",
+        busses=(mb1, mb2),
+        sinks=(
+            s1,
+            s2,
+        ),
+        sources=(so1, so2),
+        connectors=(c,),
+        timeframe=timeframe,
+    )
 
+    return connected_es

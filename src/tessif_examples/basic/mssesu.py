@@ -2,6 +2,7 @@
 """Tessif minimum working example energy system model."""
 import datetime
 import random
+
 import tessif.namedtuples as nts
 from pandas import date_range
 from tessif.model import components, energy_system

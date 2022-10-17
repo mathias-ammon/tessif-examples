@@ -1,10 +1,9 @@
 # src/tessif_examples/storage_example.py
 """Tessif minimum working example energy system model."""
-import tessif.namedtuples as nts
 import numpy as np
+import tessif.namedtuples as nts
 from pandas import date_range
 from tessif.model import components, energy_system
-
 
 
 def create_storage_example(directory=None, filename=None):
@@ -74,74 +73,72 @@ def create_storage_example(directory=None, filename=None):
         :alt: Image showing the create_storage_example energy system graph.
     """
 
-    timeframe = np.date_range('7/13/1990', periods=5, freq='H')
+    timeframe = date_range("7/13/1990", periods=5, freq="H")
 
     demand = components.Sink(
-        name='Demand',
-        inputs=('electricity',),
-        carrier='electricity',
-        node_type='sink',
-        flow_rates={'electricity': nts.MinMax(min=0, max=10)},
+        name="Demand",
+        inputs=("electricity",),
+        carrier="electricity",
+        node_type="sink",
+        flow_rates={"electricity": nts.MinMax(min=0, max=10)},
         timeseries={
-            'electricity': nts.MinMax(
-                min=np.array([10, 10, 7, 10, 10]),
-                max=np.array([10, 10, 7, 10, 10])
+            "electricity": nts.MinMax(
+                min=np.array([10, 10, 7, 10, 10]), max=np.array([10, 10, 7, 10, 10])
             )
-        }
+        },
     )
 
     generator = components.Source(
-        name='Generator',
-        outputs=('electricity',),
-        carrier='electricity',
-        node_type='source',
-        flow_rates={'electricity': nts.MinMax(min=0, max=10)},
-        flow_costs={'electricity': 2},
+        name="Generator",
+        outputs=("electricity",),
+        carrier="electricity",
+        node_type="source",
+        flow_rates={"electricity": nts.MinMax(min=0, max=10)},
+        flow_costs={"electricity": 2},
         timeseries={
-            'electricity': nts.MinMax(
-                min=np.array([19, 19, 19, 0, 0]),
-                max=np.array([19, 19, 19, 0, 0])
+            "electricity": nts.MinMax(
+                min=np.array([19, 19, 19, 0, 0]), max=np.array([19, 19, 19, 0, 0])
             )
-        }
+        },
     )
 
     powerline = components.Bus(
-        name='Powerline',
-        inputs=('Generator.electricity', 'Storage.electricity'),
-        outputs=('Demand.electricity', 'Storage.electricity',),
-        carrier='electricity',
-        node_type='bus',
+        name="Powerline",
+        inputs=("Generator.electricity", "Storage.electricity"),
+        outputs=(
+            "Demand.electricity",
+            "Storage.electricity",
+        ),
+        carrier="electricity",
+        node_type="bus",
     )
 
     storage = components.Storage(
-        name='Storage',
-        input='electricity',
-        output='electricity',
+        name="Storage",
+        input="electricity",
+        output="electricity",
         capacity=0,
         initial_soc=0,
-        carrier='electricity',
-        node_type='storage',
-        flow_efficiencies={
-             'electricity': nts.InOut(inflow=0.9, outflow=0.9)},
-        flow_costs={'electricity': 1},
-        flow_emissions={'electricity': 0.5},
-        expandable={'capacity': True, 'electricity': False},
-        expansion_costs={'capacity': 0, 'electricity': 0},
+        carrier="electricity",
+        node_type="storage",
+        flow_efficiencies={"electricity": nts.InOut(inflow=0.9, outflow=0.9)},
+        flow_costs={"electricity": 1},
+        flow_emissions={"electricity": 0.5},
+        expandable={"capacity": True, "electricity": False},
+        expansion_costs={"capacity": 0, "electricity": 0},
         expansion_limits={
-            'capacity': nts.MinMax(min=0, max=float('+inf')),
-            'electricity': nts.MinMax(min=0, max=float('+inf'))},
+            "capacity": nts.MinMax(min=0, max=float("+inf")),
+            "electricity": nts.MinMax(min=0, max=float("+inf")),
+        },
     )
 
     storage_es = energy_system.AbstractEnergySystem(
-        uid='Storage-Energysystem-Example',
+        uid="Storage-Energysystem-Example",
         busses=(powerline,),
         sinks=(demand,),
         sources=(generator,),
         storages=(storage,),
-        timeframe=timeframe
+        timeframe=timeframe,
     )
 
-
     return storage_es
-
-

@@ -1,9 +1,9 @@
 # src/tessif_examples/chp.py
 """Tessif minimum working example energy system model."""
 import tessif.namedtuples as nts
-import numpy as np
 from pandas import date_range
 from tessif.model import components, energy_system
+
 
 def create_chp(directory=None, filename=None):
     """
@@ -45,7 +45,7 @@ def create_chp(directory=None, filename=None):
         Power Demand
         Heat Demand
         CHP
-    
+
     Visualize the energy system for better understanding what the output means::
 
         from tessif-visualize import dcgraph as dcv
@@ -72,35 +72,34 @@ def create_chp(directory=None, filename=None):
         :align: center
         :alt: Image showing the chp energy system graph
     """
-
     # 2. Create a simulation time frame of four one-hour timesteps as a
     # :class:`pandas.DatetimeIndex`:
-    timeframe = np.date_range('7/13/1990', periods=4, freq='H')
+    timeframe = date_range("7/13/1990", periods=4, freq="H")
 
-    global_constraints = {'emissions': float('+inf')}
+    global_constraints = {"emissions": float("+inf")}
 
     # 3. Creating the individual energy system components:
     gas_supply = components.Source(
-        name='Gas Source',
-        outputs=('gas',),
+        name="Gas Source",
+        outputs=("gas",),
         # Minimum number of arguments required
     )
 
     gas_grid = components.Bus(
-        name='Gas Grid',
-        inputs=('Gas Source.gas', ),
-        outputs=('CHP.gas',),
+        name="Gas Grid",
+        inputs=("Gas Source.gas",),
+        outputs=("CHP.gas",),
         # Minimum number of arguments required
     )
 
     # conventional power supply is cheaper, but has emissions allocated to it
     chp = components.Transformer(
-        name='CHP',
-        inputs=('gas',),
-        outputs=('electricity', 'heat'),
+        name="CHP",
+        inputs=("gas",),
+        outputs=("electricity", "heat"),
         conversions={
-            ('gas', 'electricity'): 0.3,
-            ('gas', 'heat'): 0.2,
+            ("gas", "electricity"): 0.3,
+            ("gas", "heat"): 0.2,
         },
         # Minimum number of arguments required
         # flow_rates={
@@ -108,57 +107,57 @@ def create_chp(directory=None, filename=None):
         #     'heat': (0, 6),
         #     'gas': (0, float('+inf'))
         # },
-        flow_costs={'electricity': 3, 'heat': 2, 'gas': 0},
-        flow_emissions={'electricity': 2, 'heat': 3, 'gas': 0},
+        flow_costs={"electricity": 3, "heat": 2, "gas": 0},
+        flow_emissions={"electricity": 2, "heat": 3, "gas": 0},
     )
 
     # back up power, expensive
     backup_power = components.Source(
-        name='Backup Power',
-        outputs=('electricity',),
-        flow_costs={'electricity': 10},
+        name="Backup Power",
+        outputs=("electricity",),
+        flow_costs={"electricity": 10},
     )
 
     # Power demand needing 10 energy units per time step
     power_demand = components.Sink(
-        name='Power Demand',
-        inputs=('electricity',),
+        name="Power Demand",
+        inputs=("electricity",),
         # Minimum number of arguments required
-        flow_rates={'electricity': nts.MinMax(min=10, max=10)},
+        flow_rates={"electricity": nts.MinMax(min=10, max=10)},
     )
 
     power_line = components.Bus(
-        name='Powerline',
-        inputs=('Backup Power.electricity', 'CHP.electricity'),
-        outputs=('Power Demand.electricity',),
+        name="Powerline",
+        inputs=("Backup Power.electricity", "CHP.electricity"),
+        outputs=("Power Demand.electricity",),
         # Minimum number of arguments required
     )
 
     # Back up heat source, expensive
     backup_heat = components.Source(
-        name='Backup Heat',
-        outputs=('heat',),
-        flow_costs={'heat': 10},
+        name="Backup Heat",
+        outputs=("heat",),
+        flow_costs={"heat": 10},
     )
 
     # Heat demand needing 10 energy units per time step
     heat_demand = components.Sink(
-        name='Heat Demand',
-        inputs=('heat',),
+        name="Heat Demand",
+        inputs=("heat",),
         # Minimum number of arguments required
-        flow_rates={'heat': nts.MinMax(min=10, max=10)},
+        flow_rates={"heat": nts.MinMax(min=10, max=10)},
     )
 
     heat_grid = components.Bus(
-        name='Heat Grid',
-        inputs=('CHP.heat', 'Backup Heat.heat'),
-        outputs=('Heat Demand.heat',),
+        name="Heat Grid",
+        inputs=("CHP.heat", "Backup Heat.heat"),
+        outputs=("Heat Demand.heat",),
         # Minimum number of arguments required
     )
 
     # 4. Creating the actual energy system:
     explicit_es = energy_system.AbstractEnergySystem(
-        uid='CHP_Example',
+        uid="CHP_Example",
         busses=(gas_grid, power_line, heat_grid),
         sinks=(power_demand, heat_demand),
         sources=(gas_supply, backup_power, backup_heat),
@@ -166,6 +165,5 @@ def create_chp(directory=None, filename=None):
         timeframe=timeframe,
         global_constraints=global_constraints,
     )
-
 
     return explicit_es

@@ -1,7 +1,7 @@
 # src/tessif_examples/simple_transformer_grid_es.py
 """Tessif minimum working example energy system model."""
-import tessif.namedtuples as nts
 import numpy as np
+import tessif.namedtuples as nts
 from pandas import date_range
 from tessif.model import components, energy_system
 
@@ -55,39 +55,52 @@ def create_simple_transformer_grid_es():
 
     .. image:: ../../_static/system_model_graphs/simple_transformer_grid_es.png
         :align: center
-        :alt: Image showing the simple transformer grid es generic graph
-"""
+        :alt: Image showing the simple transformer grid es generic graph"""
 
     # predefine high -> med and med -> high efficiencies for cleaner
     # code and integer results
-    eta_h2m = 10/12
-    eta_m2h = 10/11
+    eta_h2m = 10 / 12
+    eta_m2h = 10 / 11
 
     # define optimization timespan
-    opt_timespan = np.date_range('7/13/1990', periods=6, freq='H')
+    opt_timespan = date_range("7/13/1990", periods=6, freq="H")
 
     # 3. Creating the individual energy system components:
     hv_source = components.Source(
-        name='HV-Source',
-        outputs=('hv-electricity',),
+        name="HV-Source",
+        outputs=("hv-electricity",),
         flow_rates={"hv-electricity": nts.MinMax(min=0, max=30)},
         # Minimum number of arguments required
         timeseries={
-            'hv-electricity': nts.MinMax(
-                min=[10+10/eta_h2m, 30, 10, 0, 0, 0],
-                max=[10+10/eta_h2m, 30, 10, 0, 0, 0],
+            "hv-electricity": nts.MinMax(
+                min=[10 + 10 / eta_h2m, 30, 10, 0, 0, 0],
+                max=[10 + 10 / eta_h2m, 30, 10, 0, 0, 0],
             ),
         },
     )
 
     mv_source = components.Source(
-        name='MV-Source',
-        outputs=('mv-electricity',),
+        name="MV-Source",
+        outputs=("mv-electricity",),
         flow_rates={"mv-electricity": nts.MinMax(min=0, max=30)},
         timeseries={
-            'mv-electricity': nts.MinMax(
-                min=[0, 0, 0, 10+10/eta_m2h, 30, 10, ],
-                max=[0, 0, 0, 10+10/eta_m2h, 30, 10, ],
+            "mv-electricity": nts.MinMax(
+                min=[
+                    0,
+                    0,
+                    0,
+                    10 + 10 / eta_m2h,
+                    30,
+                    10,
+                ],
+                max=[
+                    0,
+                    0,
+                    0,
+                    10 + 10 / eta_m2h,
+                    30,
+                    10,
+                ],
             ),
         },
     )
@@ -107,34 +120,34 @@ def create_simple_transformer_grid_es():
     )
 
     high_to_med = components.Transformer(
-        name='H2M',
-        inputs=('hv-electricity',),
-        outputs=('mv-electricity',),
-        conversions={('hv-electricity', 'mv-electricity'): eta_h2m},
+        name="H2M",
+        inputs=("hv-electricity",),
+        outputs=("mv-electricity",),
+        conversions={("hv-electricity", "mv-electricity"): eta_h2m},
         flow_rates={
-            'hv-electricity': nts.MinMax(min=0, max=float("+inf")),
-            'mv-electricity': nts.MinMax(min=0, max=10),
-        }
+            "hv-electricity": nts.MinMax(min=0, max=float("+inf")),
+            "mv-electricity": nts.MinMax(min=0, max=10),
+        },
     )
 
     med_to_high = components.Transformer(
-        name='M2H',
-        inputs=('mv-electricity',),
-        outputs=('hv-electricity',),
-        conversions={('mv-electricity', 'hv-electricity'): eta_m2h},
+        name="M2H",
+        inputs=("mv-electricity",),
+        outputs=("hv-electricity",),
+        conversions={("mv-electricity", "hv-electricity"): eta_m2h},
         flow_rates={
-            'mv-electricity': nts.MinMax(min=0, max=float("+inf")),
-            'hv-electricity': nts.MinMax(min=0, max=10),
-        }
+            "mv-electricity": nts.MinMax(min=0, max=float("+inf")),
+            "hv-electricity": nts.MinMax(min=0, max=10),
+        },
     )
 
     mv_demand = components.Sink(
-        name='MV-Demand',
-        inputs=('mv-electricity',),
+        name="MV-Demand",
+        inputs=("mv-electricity",),
         # Minimum number of arguments required
-        flow_rates={'mv-electricity': nts.MinMax(min=10, max=10)},
+        flow_rates={"mv-electricity": nts.MinMax(min=10, max=10)},
         timeseries={
-            'mv-electricity': nts.MinMax(
+            "mv-electricity": nts.MinMax(
                 min=[10, 12, 10, 10, 10, 10],
                 max=[10, 12, 10, 10, 10, 10],
             ),
@@ -142,12 +155,12 @@ def create_simple_transformer_grid_es():
     )
 
     hv_demand = components.Sink(
-        name='HV-Demand',
-        inputs=('hv-electricity',),
+        name="HV-Demand",
+        inputs=("hv-electricity",),
         # Minimum number of arguments required
-        flow_rates={'hv-electricity': nts.MinMax(min=10, max=10)},
+        flow_rates={"hv-electricity": nts.MinMax(min=10, max=10)},
         timeseries={
-            'hv-electricity': nts.MinMax(
+            "hv-electricity": nts.MinMax(
                 min=[10, 10, 10, 10, 12, 10],
                 max=[10, 10, 10, 10, 12, 10],
             ),
@@ -169,28 +182,28 @@ def create_simple_transformer_grid_es():
     )
 
     hv_bus = components.Bus(
-        name='HV-Bus',
+        name="HV-Bus",
         inputs=(
-            'HV-Source.hv-electricity',
-            'M2H.hv-electricity',
+            "HV-Source.hv-electricity",
+            "M2H.hv-electricity",
             "HV-BS.hv-electricity",
         ),
         outputs=(
-            'H2M.hv-electricity',
+            "H2M.hv-electricity",
             "HV-Demand.hv-electricity",
             "HV-XS.hv-electricity",
         ),
     )
 
     mv_bus = components.Bus(
-        name='MV-Bus',
+        name="MV-Bus",
         inputs=(
             "MV-Source.mv-electricity",
-            'H2M.mv-electricity',
+            "H2M.mv-electricity",
             "MV-BS.mv-electricity",
         ),
         outputs=(
-            'M2H.mv-electricity',
+            "M2H.mv-electricity",
             "MV-Demand.mv-electricity",
             "MV-XS.mv-electricity",
         ),
@@ -198,7 +211,7 @@ def create_simple_transformer_grid_es():
 
     # 4. Creating the actual energy system:
     model_scenario_combination = energy_system.AbstractEnergySystem(
-        uid='Two Transformer Grid Example',
+        uid="Two Transformer Grid Example",
         busses=(hv_bus, mv_bus),
         sinks=(hv_demand, mv_demand, hv_excess_sink, mv_excess_sink),
         sources=(hv_source, mv_source, hv_balance_source, mv_balance_source),
