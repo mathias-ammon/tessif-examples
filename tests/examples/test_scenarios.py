@@ -55,3 +55,9 @@ def test_grid_tp_es():
     """Test grid_tp_es creation."""
     esys = scenarios.create_grid_tp_es()
     assert esys.uid == "Energy System Grid Transformers and Powersources/-sinks"
+
+
+def test_losslc_es():
+    """Test losslc_es creation."""
+    esys = scenarios.create_losslc_es()
+    assert esys.uid == "LossLC"

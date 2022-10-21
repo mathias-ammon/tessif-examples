@@ -11,3 +11,4 @@ from .grid_kp_es import create_grid_kp_es
 from .grid_tp_es import create_grid_tp_es
 from .grid_ts_es import create_grid_ts_es
 from .hhes import create_hhes
+from .losslc_es import create_losslc_es
