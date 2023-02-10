@@ -9,8 +9,8 @@ Lead Developers
 
 
 Assistant Developers
----------------
+--------------------
 `Finn Theel`_
 
 .. _Mathias Ammon: https://github.com/tZ3ma/
-.. Finn Theel: https://github.com/Theel
+.. _Finn Theel: https://github.com/Theel
