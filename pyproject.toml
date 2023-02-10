@@ -38,7 +38,7 @@ pylint = "^2.14.0"
 nox = "^2022.1.7"
 
 [tool.poetry.group.dev.dependencies]
-nox-poetry = "^1.0.1"
+nox-poetry = "^1.0.2"
 
 [tool.coverage.paths]
 source = ["src", "*/site-packages"]
