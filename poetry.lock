@@ -16,7 +16,7 @@ files = [
 name = "argcomplete"
 version = "2.0.0"
 description = "Bash tab completion for argparse"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 files = [
@@ -269,7 +269,7 @@ colorama = {version = "*", markers = "platform_system == \"Windows\""}
 name = "colorama"
 version = "0.4.6"
 description = "Cross-platform colored terminal text."
-category = "dev"
+category = "main"
 optional = false
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,>=2.7"
 files = [
@@ -281,7 +281,7 @@ files = [
 name = "colorlog"
 version = "6.7.0"
 description = "Add colours to the output of Python's logging module."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 files = [
@@ -380,7 +380,7 @@ graph = ["objgraph (>=1.7.2)"]
 name = "distlib"
 version = "0.3.6"
 description = "Distribution utilities"
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 files = [
@@ -419,7 +419,7 @@ test = ["pytest (>=6)"]
 name = "filelock"
 version = "3.9.0"
 description = "A platform independent file lock."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -811,7 +811,7 @@ files = [
 name = "nox"
 version = "2022.11.21"
 description = "Flexible test automation."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -832,7 +832,7 @@ tox-to-nox = ["jinja2", "tox"]
 name = "nox-poetry"
 version = "1.0.2"
 description = "nox-poetry"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7,<4.0"
 files = [
@@ -887,7 +887,7 @@ files = [
 name = "packaging"
 version = "23.0"
 description = "Core utilities for Python packages"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -988,7 +988,7 @@ flake8-polyfill = ">=1.0.2,<2"
 name = "platformdirs"
 version = "3.0.0"
 description = "A small Python package for determining appropriate platform-specific dirs, e.g. a \"user data dir\"."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -1473,17 +1473,18 @@ pbr = ">=2.0.0,<2.1.0 || >2.1.0"
 
 [[package]]
 name = "tessif"
-version = "0.0.15"
+version = "0.0.16"
 description = "Transforming Energy Supply System modell*I*ng Framework"
 category = "main"
 optional = false
 python-versions = ">=3.8,<4.0"
 files = [
-    {file = "tessif-0.0.15-py3-none-any.whl", hash = "sha256:9160b48cbd929db91200803037c008b13520b79852fa071b01acf296089aae0c"},
-    {file = "tessif-0.0.15.tar.gz", hash = "sha256:f6321bc0d0d13e909ce14b7e62bf932a032fa96964563e6a7d79bd563eefc40e"},
+    {file = "tessif-0.0.16-py3-none-any.whl", hash = "sha256:0702a59ce060abf0b5b96e679c3616af508ce3012faf3c4b4efee6c31be97f84"},
+    {file = "tessif-0.0.16.tar.gz", hash = "sha256:baf55a2e015c17bf5b8ec16a2214b01a6b3df14c497a0b1af38f617263498963"},
 ]
 
 [package.dependencies]
+nox-poetry = ">=1.0.2,<2.0.0"
 requests = ">=2.27.1,<3.0.0"
 
 [[package]]
@@ -1514,7 +1515,7 @@ files = [
 name = "tomlkit"
 version = "0.11.6"
 description = "Style preserving TOML library"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 files = [
@@ -1555,7 +1556,7 @@ socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 name = "virtualenv"
 version = "20.19.0"
 description = "Virtual Python Environment builder"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -1693,4 +1694,4 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "49351b22e1ef6c8e0390def211a857fb57fb519ac28586a0d0b601ed4df7fa7e"
+content-hash = "190e5f1c451168d4100861db37e9084ad5eb2388d4974cda548c2dd62e332daf"
