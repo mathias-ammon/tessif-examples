@@ -15,10 +15,6 @@ requests = "^2.27.1"
 tessif = "^0.0.15"
 numpy = "*"
 pandas = "*"
-ittools = "*"
-oemof = ">=0.0.1"
-strutils = ">=0.0.1"
-matplotlib = "^3.6.1"
 
 
 [tool.poetry.dev-dependencies]
