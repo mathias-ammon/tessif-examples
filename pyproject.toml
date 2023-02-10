@@ -12,8 +12,14 @@ keywords = ["tessif", "examples"]
 [tool.poetry.dependencies]
 python = "^3.8"
 requests = "^2.27.1"
-pandas = "^1.4.3"
 tessif = "^0.0.15"
+numpy = "*"
+pandas = "*"
+ittools = "*"
+oemof = ">=0.0.1"
+strutils = ">=0.0.1"
+matplotlib = "^3.6.1"
+
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.1.2"
