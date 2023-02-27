@@ -1,63 +1,27 @@
 # src/tessif_examples/conected_es.py
 """Tessif minimum working example energy system model."""
 import numpy as np
-import tessif.namedtuples as nts
+import tessif.frused.namedtuples as nts
 from pandas import date_range
-from tessif.model import components, energy_system
+from tessif import components, system_model
 
 
-def create_connected_es(directory=None, filename=None):
-    """
-    Create a minimal working example using :mod:`tessif's
-    model <tessif.model>` connecting to seperate energy systems using a
-    :class:`tessif.model.components.Connector` object. Effectively creating
-    a `transs hipment problem
-    <https://en.wikipedia.org/wiki/Transshipment_problem>`_.
+def create_connected_es():
+    """Create a minimal transipment problem example.
 
     Return
     ------
-    :class:`tessif.model.energy_system.AbstractEnergySystem`
+    :class:`tessif.system_model.AbstractEnergySystem`
         Tessif energy system.
-
-    References
-    ----------
-    :ref:`Models_Tessif_mwe` - For a step by step explanation on how to create
-    a Tessif energy system.
-
-    :ref:`AutoCompare_Transshipment` - For simulating and
-    comparing this energy system using different supported models.
-
-    :meth:`tessif.model.energy_system.AbstractEnergySystem.connect` - For the
-    built in mehtod of tessif's energy systems.
-
-    :ref:`Examples_Application_Computational` - For a comprehensive example
-    on how to connect energy systems and how this can be used to measure
-    computational scalability.
 
     Examples
     --------
-    Visualize the energy system for better understanding what the output means:
-
-        from tessif-visualize import dcgraph as dcv
-
-        app = dcv.draw_generic_graph(
-            energy_system=create_connected_es(),
-            color_group={
-                'connector': '#9999ff',
-                'bus-01': '#cc0033',
-                'bus-02': '#00ccff',
-            },
-        )
-
-        # Serve interactive drawing to http://127.0.0.1:8050/
-        app.run_server(debug=False)
-
+    Generic System Visualization:
 
     .. image:: ../../_static/system_model_graphs/connected_es.png
         :align: center
         :alt: Image showing the connected_es energy system graph
     """
-
     timeframe = date_range("7/13/1990", periods=3, freq="H")
 
     s1 = components.Sink(
@@ -116,7 +80,7 @@ def create_connected_es(directory=None, filename=None):
         conversions={("bus-01", "bus-02"): 0.9, ("bus-02", "bus-01"): 0.8},
     )
 
-    connected_es = energy_system.AbstractEnergySystem(
+    connected_es = system_model.AbstractEnergySystem(
         uid="Connected-Energy-Systems-Example",
         busses=(mb1, mb2),
         sinks=(

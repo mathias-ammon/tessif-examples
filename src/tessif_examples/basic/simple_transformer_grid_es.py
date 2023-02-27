@@ -1,9 +1,8 @@
 # src/tessif_examples/simple_transformer_grid_es.py
 """Tessif minimum working example energy system model."""
-import numpy as np
-import tessif.namedtuples as nts
+import tessif.frused.namedtuples as nts
 from pandas import date_range
-from tessif.model import components, energy_system
+from tessif import components, system_model
 
 
 def create_simple_transformer_grid_es():
@@ -22,41 +21,18 @@ def create_simple_transformer_grid_es():
 
     Returns
     -------
-    tessif.model.energy_system.AbstractEnergySystem
+    tessif.system_model.AbstractEnergySystem
         Tessif energy system model (scenario comibnation) emulating common
         grid analysis topics.
 
     Example
     -------
-    Visualize the tessif energy system as generic graph:
-
-        from tessif-visualize import dcgraph as dcv
-
-        app = dcv.draw_generic_graph(
-            energy_system=create_simple_transformer_grid_es(),,
-            color_group={
-                'HV-Demand': '#ff9900',
-                'HV-BS': '#ff9900',
-                'HV-XS': '#ff9900',
-                'HV-Source': '#ff9900',
-                'H2M': '#ffcc00',
-                'M2H': '#ffcc00',
-                'MV-Bus': '#ffcc00',
-                'HV-Bus': '#ffcc00',
-                'MV-Demand': '#ff6600',
-                'MV-Source': '#ff6600',
-                'MV-BS': '#ff6600',
-                'MV-XS': '#ff6600',
-            },
-        )
-
-        # Serve interactive drawing to http://127.0.0.1:8050/
-        app.run_server(debug=False)
+    Generic System Visualization:
 
     .. image:: ../../_static/system_model_graphs/simple_transformer_grid_es.png
         :align: center
-        :alt: Image showing the simple transformer grid es generic graph"""
-
+        :alt: Image showing the simple transformer grid es generic graph
+    """
     # predefine high -> med and med -> high efficiencies for cleaner
     # code and integer results
     eta_h2m = 10 / 12
@@ -210,7 +186,7 @@ def create_simple_transformer_grid_es():
     )
 
     # 4. Creating the actual energy system:
-    model_scenario_combination = energy_system.AbstractEnergySystem(
+    model_scenario_combination = system_model.AbstractEnergySystem(
         uid="Two Transformer Grid Example",
         busses=(hv_bus, mv_bus),
         sinks=(hv_demand, mv_demand, hv_excess_sink, mv_excess_sink),

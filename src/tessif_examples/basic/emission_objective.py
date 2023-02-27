@@ -1,62 +1,30 @@
 # src/tessif_examples/emission_objective.py
 """Tessif minimum working example energy system model."""
-import numpy as np
-import tessif.namedtuples as nts
+import tessif.frused.namedtuples as nts
 from pandas import date_range
-from tessif.model import components, energy_system
+from tessif import components, system_model
 
 
-def create_emission_objective(directory=None, filename=None):
-    """
+def create_emission_objective():
+    """Create minimum emission constraint commitment problem example.
+
     Create a minimal working example using :mod:`tessif's
     model <tessif.model>` optimizing it for costs and keeping
     the total emissions below an emission objective.
 
     Return
     ------
-    :class:`tessif.model.energy_system.AbstractEnergySystem`
+    :class:`tessif.system_model.AbstractEnergySystem`
         Tessif energy system.
-
-    References
-    ----------
-    :ref:`Models_Tessif_mwe` - For a step by step explanation on how to create
-    a Tessif energy system.
-
-    :ref:`examples_auto_comparison_emissions` - For simulating and
-    comparing this energy system using different supported models.
-
-    :ref:`Secondary_Objectives` - For a detailed description on how to
-    constrain values like co2 emissions.
 
     Examples
     --------
-    Visualize the energy system for better understanding what the output means:
-
-        from tessif-visualize import dcgraph as dcv
-
-        app = dcv.draw_generic_graph(
-            energy_system=create_emission_objective(),
-            color_group={
-              'Wind Power': '#00ccff',
-              'Gas Source': '#336666',
-              'Gas Grid': '#336666',
-              'Gas Plant': '#336666',
-              'Gas Station': '#666666',
-              'Pipeline': '#666666',
-              'Generator': '#666666',
-                'Powerline': 'yellow',
-                'Demand': 'yellow',
-            },
-        )
-
-        # Serve interactive drawing to http://127.0.0.1:8050/
-        app.run_server(debug=False)
+    Generic System Visualization:
 
     .. image:: ../../_static/system_model_graphs/emission_objective.png
         :align: center
         :alt: Image showing the emission_objective example energy system graph
     """
-
     # 2. Create a simulation time frame of four one-hour timesteps as a
     # :class:`pandas.DatetimeIndex`:
     timeframe = date_range("7/13/1990", periods=4, freq="H")
@@ -147,7 +115,7 @@ def create_emission_objective(directory=None, filename=None):
     global_constraints = {"emissions": 60}
 
     # 4. Creating the actual energy system:
-    explicit_es = energy_system.AbstractEnergySystem(
+    explicit_es = system_model.AbstractEnergySystem(
         uid="Emission_Objective_Example",
         busses=(fuel_supply_line, electricity_line, gas_grid),
         sinks=(demand,),

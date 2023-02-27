@@ -1,8 +1,8 @@
 # src/tessif_examples/mwe.py
 """Tessif minimum working example energy system model."""
-import tessif.namedtuples as nts
+import tessif.frused.namedtuples as nts
 from pandas import date_range
-from tessif.model import components, energy_system
+from tessif import components, system_model
 
 
 def create_mwe():
@@ -10,7 +10,7 @@ def create_mwe():
 
     Returns
     -------
-    :class:`tessif.model.energy_system.AbstractEnergySystem`
+    :class:`tessif.system_model.AbstractEnergySystem`
         Tessif minimum working example energy system.
 
     Example
@@ -20,7 +20,7 @@ def create_mwe():
         from tessif_visualize import dcgrph as dcv
 
         app = dcv.draw_generic_graph(
-            energy_system=create_mwe(),
+            system_model=create_mwe(),
             color_group={
                 'Gas Station': '#006666',
                 'Pipeline': '#006666',
@@ -91,7 +91,7 @@ def create_mwe():
     )
 
     # 4. Creating the actual energy system:
-    explicit_es = energy_system.AbstractEnergySystem(
+    explicit_es = system_model.AbstractEnergySystem(
         uid="Minimum_Working_Example",
         busses=(fuel_supply_line, electricity_line),
         sinks=(demand,),
