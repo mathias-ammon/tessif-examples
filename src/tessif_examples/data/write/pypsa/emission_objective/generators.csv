@@ -1,3 +1,0 @@
-name,bus,control,p_nom,carrier,marginal_cost,efficiency,p_nom_opt
-Renewable,Power Line,Slack,999999999999.0,,5.0,1.0,999999999999.0
-Gas Generator,Power Line,PQ,10.0,gas,2.0,0.42,10.0

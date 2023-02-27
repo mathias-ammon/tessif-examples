@@ -1,10 +1,8 @@
-# src/tessif_examples/time_varying_efficiency_transformer.py
+# src/tessif_examples/basic/time_varying_efficiency_transformer.py
 """Tessif minimum working example energy system model."""
-import numpy as np
-import pandas as pd
-import tessif.namedtuples as nts
+import tessif.frused.namedtuples as nts
 from pandas import date_range
-from tessif.model import components, energy_system
+from tessif import components, system_model
 
 
 def create_time_varying_efficiency_transformer():
@@ -12,36 +10,18 @@ def create_time_varying_efficiency_transformer():
 
     Returns
     -------
-    :class:`tessif.model.energy_system.AbstractEnergySystem`
+    :class:`tessif.system_model.AbstractEnergySystem`
         Tessif minimum working example energy system.
 
     Example
     -------
-    Visualize the energy system for better understanding what the output means:
-
-          from tessif-visualize import dcgraph as dcv
-
-        app = dcv.draw_generic_graph(
-            energy_system=create_time_varying_efficiency_transformer(),
-            color_group={
-                'Transformer': '#006666',
-                'Commodity': '#006666',
-                'Com Bus': '#006666',
-                'Powerline': '#ffcc00',
-                'Import': '#ff6600',
-                'Demand': '#009900',
-             },
-        )
-
-        # Serve interactive drawing to http://127.0.0.1:8050/
-        # app.run_server(debug=False)
+    Generic System Visualization:
 
     .. image:: ../images/time_varying_efficiency_transformer.png
         :align: center
         :alt: Image showing the mwe energy system graph
     """
-
-    opt_timespan = pd.date_range("7/13/1990", periods=3, freq="H")
+    opt_timespan = date_range("7/13/1990", periods=3, freq="H")
 
     demand = components.Sink(
         name="Demand",
@@ -97,7 +77,7 @@ def create_time_varying_efficiency_transformer():
         node_type="bus",
     )
 
-    transformer_eff_es = energy_system.AbstractEnergySystem(
+    transformer_eff_es = system_model.AbstractEnergySystem(
         uid="Transformer-Timeseries-Example",
         busses=(
             commodity_bus,

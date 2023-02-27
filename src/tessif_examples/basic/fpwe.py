@@ -1,75 +1,27 @@
 # src/tessif_examples/fpwe.py
 """Tessif minimum working example energy system model."""
 import numpy as np
-import tessif.namedtuples as nts
+import tessif.frused.namedtuples as nts
 from pandas import date_range
-from tessif.model import components, energy_system
+from tessif import components, system_model
 
 
-def create_fpwe(directory=None, filename=None):
-    """
-    Create a fully parameterized working example using :mod:`tessif's model
-    <tessif.model>`.
-
-    filename : str, default=None
-        :func:`~pickle.dump` the energy system using this name.
-
-        If set to ``None`` (default) filename will be ``fpwe.tsf``.
+def create_fpwe():
+    """Create a fully parameterized working example.
 
     Return
     ------
-    :class:`tessif.model.energy_system.AbstractEnergySystem`
+    :class:`tessif.system_model.AbstractEnergySystem`
         Tessif energy system.
-
-    References
-    ----------
-    :ref:`Models_Tessif_Fpwe` - For a step by step explanation on creating this
-    energy system.
-
-    :ref:`examples_auto_comparison_fpwe` - For simulating and
-    comparing the fpwe using different supported models.
 
     Examples
     --------
-    import tessif.examples.data.tsf.py_hard as tsf_py
-
-        es = tsf_py.create_fpwe()
-
-
-        for node in es.nodes:
-            print(node.uid.name)
-        Pipeline
-        Powerline
-        Gas Station
-        Solar Panel
-        Demand
-        Generator
-        Battery
-
-    Visualize the energy system for better understanding what the output means:
-
-        from tessif-visualize import dcgraph as dcv
-
-        app = dcv.draw_generic_graph(
-            energy_system=create_fpwe(),
-            color_group={
-                'Solar Panel': '#ff9900',
-                'Gas Station': '#006666',
-                'Pipeline': '#006666',
-                'Generator': '#006666',
-                'Powerline': '#ffcc00',
-                'Battery': '#ff6600',
-                'Demand': '#009900',
-            },
-        )
-        # Serve interactive drawing to http://127.0.0.1:8050/
-        app.run_server(debug=False)
+    Generic System Visualization:
 
     .. image:: ../../_static/system_model_graphs/fpwe.png
         :align: center
         :alt: Image showing the fpwe energy system graph
     """
-
     # 2. Create a simulation time frame of of 3 one hour time steps as a
     # :class:`pandas.DatetimeIndex`:
     timeframe = date_range("7/13/1990", periods=3, freq="H")
@@ -289,7 +241,7 @@ def create_fpwe(directory=None, filename=None):
 
     # 4. Creating the actual energy system:
 
-    explicit_es = energy_system.AbstractEnergySystem(
+    explicit_es = system_model.AbstractEnergySystem(
         uid="Fully_Parameterized_Working_Example",
         busses=(fuel_supply_line, electricity_line),
         sinks=(demand,),

@@ -1,25 +1,23 @@
-# src/tessif_examples/storage_example.py
+# src/tessif_examples/basic/storage_example.py
 """Tessif minimum working example energy system model."""
 import numpy as np
-import tessif.namedtuples as nts
+import tessif.frused.namedtuples as nts
 from pandas import date_range
-from tessif.model import components, energy_system
+from tessif import components, system_model
 
 
-def create_storage_example(directory=None, filename=None):
-    """
-    Create a small energy system utilizing a storage.
+def create_storage_example():
+    """Create a small energy system utilizing a storage.
 
     Return
     ------
-    :class:`tessif.model.energy_system.AbstractEnergySystem`
+    :class:`tessif.system_model.AbstractEnergySystem`
         Tessif energy system.
 
     Warning
     -------
     In this example the installed capacity is set to 0, but expandable
-    (A common use case). Most, if not any, of the
-    :ref:`supported models <SupportedModels>` however, use capacity specific
+    (A common use case). Common ESSMOS tools, however, use capacity specific
     values for idle losses and initial as well as final soc constraints.
 
     Given the initial capacity is 0, this problem is solved by setting the
@@ -29,50 +27,14 @@ def create_storage_example(directory=None, filename=None):
     initial soc and idle changes accordingly. This might involve some trial and
     error.
 
-    References
-    ----------
-    :ref:`Models_Tessif_mwe` - For a step by step explanation on how to create
-    a Tessif energy system.
-
-    :ref:`AutoCompare_Storage` - For simulating and
-    comparing this energy system using different supported models.
-
     Examples
     --------
-    Using :func:`create_storage_example` to quickly access a tessif energy
-    system to use for doctesting, or trying out this frameworks utilities.
-
-        import tessif.examples.data.tsf.py_hard as coded_examples
-        tsf_es = coded_examples.create_storage_example()
-
-        for node in tsf_es.nodes:
-            print(node.uid.name)
-        Powerline
-        Generator
-        Demand
-        Storage
-
-    Visualize the energy system for better understanding what the output means:
-
-        from tessif-visualize import dcgraph as dcv
-
-        app = dcv.draw_generic_graph(
-            energy_system=create_storage_es_example(),
-            color_group={
-                'Powerline': '#009900',
-                'Storage': '#cc0033',
-                'Demand': '#00ccff',
-                'Generator': '#ffD700',
-            },
-        )
-        # Serve interactive drawing to http://127.0.0.1:8050/
-        app.run_server(debug=False)
+    Generic System Visualization:
 
     .. image:: ../../_static/system_model_graphs/storage_es_example.png
         :align: center
         :alt: Image showing the create_storage_example energy system graph.
     """
-
     timeframe = date_range("7/13/1990", periods=5, freq="H")
 
     demand = components.Sink(
@@ -132,7 +94,7 @@ def create_storage_example(directory=None, filename=None):
         },
     )
 
-    storage_es = energy_system.AbstractEnergySystem(
+    storage_es = system_model.AbstractEnergySystem(
         uid="Storage-Energysystem-Example",
         busses=(powerline,),
         sinks=(demand,),
