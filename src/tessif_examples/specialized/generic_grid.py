@@ -19,7 +19,7 @@ def create_generic_grid():
     :class:`tessif.model.system_model.AbstractEnergySystem`
         Tessif energy system.
 
-    See Also
+    Examples
     --------
     Generic System Visualization:
 

@@ -1,6 +1,6 @@
 Basic Examples Testing
 ======================
 
-.. automodule:: tests.examples.test_basic
+.. automodule:: tests.test_basic
    :members:
    :show-inheritance:

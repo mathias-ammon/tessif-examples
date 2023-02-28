@@ -1,6 +1,6 @@
 Scenario Focused Examples Testing
 =================================
 
-.. automodule:: tests.examples.test_scenarios
+.. automodule:: tests.test_scientific
    :members:
    :show-inheritance:

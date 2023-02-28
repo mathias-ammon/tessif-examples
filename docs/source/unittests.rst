@@ -11,6 +11,6 @@ Unittests
    :maxdepth: 4
 
    unittests/test_basic
-   unittests/test_scenarios
+   unittests/test_scientific
 
    unittests/test_version

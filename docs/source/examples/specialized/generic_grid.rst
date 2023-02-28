@@ -1,8 +1,8 @@
-.. _grid_cs_es:
+.. _generic_grid:
 
 Generic Grid Example
 ********************
 
-.. automodule:: tessif_examples.scenarios.grid_cs_es
+.. automodule:: tessif_examples.specialized.generic_grid
    :members:
    :show-inheritance:

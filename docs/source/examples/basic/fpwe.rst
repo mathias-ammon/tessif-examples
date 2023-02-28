@@ -1,7 +1,7 @@
 .. _fpwe:
 
-Minimum Working Example
-***********************
+Fully Parameterized Working Example
+***********************************
 
 .. automodule:: tessif_examples.basic.fpwe
    :members:

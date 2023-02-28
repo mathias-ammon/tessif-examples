@@ -31,7 +31,7 @@ def create_storage_example():
     --------
     Generic System Visualization:
 
-    .. image:: ../../_static/system_model_graphs/storage_es_example.png
+    .. image:: ../../_static/system_model_graphs/storage_es.png
         :align: center
         :alt: Image showing the create_storage_example energy system graph.
     """

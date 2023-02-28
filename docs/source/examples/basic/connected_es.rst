@@ -1,6 +1,6 @@
 .. _connected_es:
 
-Minimum Working Example
+Basic Conenctor Example
 ***********************
 
 .. automodule:: tessif_examples.basic.connected_es
