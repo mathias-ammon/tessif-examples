@@ -1,7 +1,7 @@
 .. _emission_objective:
 
-Minimum Working Example
-***********************
+Basic Emission Constrained Commitment Problem Example
+*****************************************************
 
 .. automodule:: tessif_examples.basic.emission_objective
    :members:

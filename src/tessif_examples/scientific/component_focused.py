@@ -17,7 +17,7 @@ def create_component_focused_msc(expansion_problem=False, periods=3):
     """Component-focused energy system model scenario combinations.
 
     Developed by Max Reimer as part of his `Project Thesis
-    <https://tore.tuhh.de/handle/11420/11707>`.
+    <https://tore.tuhh.de/handle/11420/11707>`_.
 
     Create a model of a generic component based energy system using
     :mod:`tessif's model <tessif.model>`.
@@ -37,7 +37,7 @@ def create_component_focused_msc(expansion_problem=False, periods=3):
     :class:`tessif.system_model.AbstractEnergySystem`
         Tessif energy system.
 
-    See Also
+    Examples
     --------
     Generic System Visualization:
 

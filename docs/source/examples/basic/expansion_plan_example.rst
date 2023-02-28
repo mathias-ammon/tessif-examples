@@ -1,7 +1,7 @@
 .. _expansion_plan_example:
 
-Minimum Working Example
-***********************
+Basic Expansion Problem Example
+*******************************
 
 .. automodule:: tessif_examples.basic.expansion_plan_example
    :members:

@@ -1,8 +1,8 @@
 .. _time_varying_transformer:
 
-Minimum Working Example
-***********************
+Basic Timevarying Efficiency Example
+************************************
 
-.. automodule:: tessif_examples.basic.time_varying_transformer
+.. automodule:: tessif_examples.basic.time_varying_efficiency_transformer
    :members:
    :show-inheritance:

@@ -17,7 +17,7 @@ def create_time_varying_efficiency_transformer():
     -------
     Generic System Visualization:
 
-    .. image:: ../images/time_varying_efficiency_transformer.png
+    .. image:: ../../_static/system_model_graphs/time_varying_efficiency_transformer.png
         :align: center
         :alt: Image showing the mwe energy system graph
     """

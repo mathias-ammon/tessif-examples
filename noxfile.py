@@ -90,7 +90,6 @@ def pylint(session):
     session.run("poetry", "install", "--no-dev", external=True)
     session.install(
         "pytest",
-        "requests",
         "nox",
         "nox-poetry",
         "pylint",
@@ -206,7 +205,6 @@ def precommit(session):
         "pre-commit-hooks",
         "pyupgrade",
         "pytest",
-        "requests",
         "nox",
         "nox-poetry",
         "pylint",

@@ -18,7 +18,7 @@ def create_hamburg_inspired_hnp_msc(periods=24):
     """Create a generic hamburg oriented system model scenario combination.
 
     Developed by Cedric Koerber as part of his `Bachelor Thesis
-    <https://tore.tuhh.de/handle/11420/12041>`.
+    <https://tore.tuhh.de/handle/11420/12041>`_.
 
     Create a model of Hamburg's energy system using :mod:`tessif's
     model <tessif.model>`.
@@ -34,7 +34,7 @@ def create_hamburg_inspired_hnp_msc(periods=24):
     :class:`tessif.system_model.AbstractEnergySystem`
         Tessif energy system model.
 
-    See Also
+    Examples
     --------
     Generic System Visualization:
 

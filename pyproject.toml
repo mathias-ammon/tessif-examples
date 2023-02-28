@@ -2,7 +2,7 @@
 name = "tessif-examples"
 version = "0.3.0"
 description = "Tessif Examples Library"
-authors = ["Mathias Ammon <mathias.ammon@tuhh.de>"]
+authors = ["Mathias Ammon <tz3ma.coding@use.startmail.com>"]
 license = "MIT"
 readme = "README.rst"
 repository = "https://github.com/tZ3ma/tessif_examples"

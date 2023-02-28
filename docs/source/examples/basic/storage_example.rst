@@ -1,8 +1,8 @@
 .. _storage_examples:
 
-Minimum Working Example
-***********************
+Basic Storage Example
+*********************
 
-.. automodule:: tessif_examples.basic.storage_examples
+.. automodule:: tessif_examples.basic.storage_example
    :members:
    :show-inheritance:

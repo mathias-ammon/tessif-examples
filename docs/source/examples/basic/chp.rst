@@ -1,7 +1,7 @@
 .. _chp:
 
-Minimum Working Example
-***********************
+Basic CHP Example
+*****************
 
 .. automodule:: tessif_examples.basic.chp
    :members:

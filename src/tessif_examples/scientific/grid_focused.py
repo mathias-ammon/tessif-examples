@@ -35,6 +35,14 @@ def create_lossless_commitment_msc(periods=24):
     ------
     es: :class:`tessif.system_model.AbstractEnergySystem`
         Tessif energy system.
+
+    Examples
+    --------
+    Generic System Visualization:
+
+    .. image:: ../../_static/system_model_graphs/losslc_es.png
+        :align: center
+        :alt: Image showing the create_hhes energy system graph.
     """
     # 2. Create a simulation time frame as a :class:`pandas.DatetimeIndex`:
     timeframe = pd.date_range("10/13/2030", periods=periods, freq="H")
@@ -524,7 +532,7 @@ def create_transformer_grid_focused_msc(
         (at 0 the parts of the grid are not connected)
 
     expansion: bool, default=False
-        If ``True`` :ref:`gridcapacity` is subject to expansion.
+        If ``True`` maximum grid capacity is subject to expansion.
 
     Note
     ----
@@ -538,10 +546,10 @@ def create_transformer_grid_focused_msc(
            Voltage Grid"``
         4. Rename ``"[Voltage to Voltage] Transformator"`` to
            ``"[Voltage to Voltage] Transfer"``
-        5. Change :ref:`gridcapacity` to reference the maximum outflow.
-        6. :ref:`expansion` capabilities are added to allow :ref:`gridcapacity`
+        5. Change gridcapacity parameter to reference the maximum outflow.
+        6. Expansion capabilities are added to allow maximum grid capacity
            to be expanded
-        7. Default :ref:`transformer_efficiency` is decreased to ``0.93`` to
+        7. Default transformer_efficiency is decreased to ``0.93`` to
            discourage energy circulation between to grid busses to dissipate
            surplus amounts.
         8. Outflow costs of 10 cost units per power unit are added to all
@@ -553,6 +561,14 @@ def create_transformer_grid_focused_msc(
     ------
     es: :class:`tessif.system_model.AbstractEnergySystem`
         Tessif energy system.
+
+    Examples
+    --------
+    Generic System Visualization:
+
+    .. image:: ../../_static/system_model_graphs/transformer_grid_focused.png
+        :align: center
+        :alt: Image showing the TransCnE GSV.
     """
     # 2. Create a simulation time frame as a :class:`pandas.DatetimeIndex`:
     timeframe = pd.date_range("10/13/2030", periods=periods, freq="H")
