@@ -32,6 +32,7 @@ tessif-examples has been developed for making it easy to get started with tessif
    source/examples/basic/chp
 
    source/examples/basic/zero_costs_es
+   source/examples/basic/statistical_identification_example
 
 .. toctree::
    :maxdepth: 1
@@ -49,6 +50,12 @@ tessif-examples has been developed for making it easy to get started with tessif
    source/examples/specialized/variable_chp
    source/examples/specialized/self_similar_energy_system
 
+.. toctree::
+   :maxdepth: 1
+   :caption: Plausibility Check Examples
+
+   source/examples/plausibility/storage_emissions
+   source/examples/plausibility/chp_emissions
 
 .. toctree::
    :maxdepth: 1
