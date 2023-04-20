@@ -8,6 +8,9 @@ from .expansion_plan_example import create_expansion_plan_example
 from .fpwe import create_fpwe
 from .mwe import create_mwe
 from .simple_transformer_grid_es import create_simple_transformer_grid_es
+from .statistical_identification_example import (
+    create_statistical_identification_example,
+)
 from .storage_example import create_storage_example
 from .storage_fixed_ratio_expansion_example import (
     create_storage_fixed_ratio_expansion_example,

@@ -84,7 +84,6 @@ def create_hamburg_inspired_hnp_msc(periods=24):
     cfba = 0
 
     # Global Constraints:
-
     global_constraints = {
         "name": "2019",
         "emissions": float("+inf"),
@@ -579,8 +578,10 @@ def create_hamburg_inspired_hnp_msc(periods=24):
         flow_emissions={"electricity": 0},
         timeseries={"electricity": nts.MinMax(min=pv_hh, max=pv_hh)},
         expandable={"electricity": True},
-        expansion_costs={"electricity": utils.annuity(capex=1000000, n=20, wacc=0.05)},
-        expansion_limits={"electricity": nts.MinMax(min=max_pv, max=float("+inf"))},
+        expansion_costs={"electricity": utils.annuity(
+            capex=1000000, n=20, wacc=0.05)},
+        expansion_limits={"electricity": nts.MinMax(
+            min=max_pv, max=float("+inf"))},
     )
 
     won1 = components.Source(
@@ -596,8 +597,10 @@ def create_hamburg_inspired_hnp_msc(periods=24):
         flow_emissions={"electricity": 0.007},  # 0.007
         timeseries={"electricity": nts.MinMax(min=wo_hh, max=wo_hh)},
         expandable={"electricity": True},
-        expansion_costs={"electricity": utils.annuity(capex=1750000, n=20, wacc=0.05)},
-        expansion_limits={"electricity": nts.MinMax(min=max_wo, max=float("+inf"))},
+        expansion_costs={"electricity": utils.annuity(
+            capex=1750000, n=20, wacc=0.05)},
+        expansion_limits={"electricity": nts.MinMax(
+            min=max_wo, max=float("+inf"))},
     )
 
     bm_supply = components.Source(
@@ -628,7 +631,8 @@ def create_hamburg_inspired_hnp_msc(periods=24):
         flow_costs={"electricity": 20},
         flow_emissions={"electricity": 0},
         expendable={"capacity": True, "electricity": False},
-        expansion_costs={"capacity": utils.annuity(capex=1000000, n=10, wacc=0.05)},
+        expansion_costs={"capacity": utils.annuity(
+            capex=1000000, n=10, wacc=0.05)},
     )
 
     # P2H Karoline:
@@ -654,7 +658,8 @@ def create_hamburg_inspired_hnp_msc(periods=24):
         flow_costs={"electricity": 0, "hot_water": 0},
         flow_emissions={"electricity": 0, "hot_water": 0},  # 0.007
         expandable={"electricity": False, "hot_water": True},
-        expansion_costs={"hot_water": utils.annuity(capex=200000, n=30, wacc=0.05)},
+        expansion_costs={"hot_water": utils.annuity(
+            capex=200000, n=30, wacc=0.05)},
         expansion_limits={"hot_water": nts.MinMax(min=45, max=200)},
     )
 
